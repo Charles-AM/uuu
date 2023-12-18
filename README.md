@@ -43,7 +43,7 @@ app.post('/submitVitals', async (req, res) => {
     res.status(201).json({ message: 'Vitals submitted successfully' });
   } catch (error) {
 
-View List of Patients:
+## View List of Patients:
 This includes the endpoint /viewPatients.
 app.get('/viewPatients', async (req, res) => {
   try {
@@ -55,6 +55,19 @@ app.get('/viewPatients', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+  
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+## View patient details
+app.get('/viewPatient/:patientID', async (req, res) => {
+
+  try {
+  
+    const patient = await Patient.findOne({ patientID: req.params.patientID });
+    res.status(200).json(patient);
+  } catch (error) {
   
     res.status(500).json({ error: 'Internal Server Error' });
   }
