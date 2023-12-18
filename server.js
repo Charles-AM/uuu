@@ -41,3 +41,11 @@ app.get('/viewPatients', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+app.get('/viewPatient/:patientID', async (req, res) => {
+  try {
+    const patient = await Patient.findOne({ patientID: req.params.patientID });
+    res.status(200).json(patient);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
