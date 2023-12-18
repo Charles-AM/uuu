@@ -33,3 +33,11 @@ app.post('/submitVitals', async (req, res) => {
   }
 });
 
+app.get('/viewPatients', async (req, res) => {
+  try {
+    const patients = await Patient.find();
+    res.status(200).json(patients);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
