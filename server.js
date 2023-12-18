@@ -5,6 +5,45 @@ const bodyParser = require('body-parser');
 const app = express()
 const PORT = 3000;
 
+mongoose.connect(mongodb+srv://Charles:<12345678uuu>@cluster0.mxzn0dx.mongodb.net/)
+.then(() =>{
+console.log("MONGODB running")
+
+ const patientSchema = new mongoose.Schema({
+  patientID: String,
+  surname: String,
+  otherNames: String,
+  gender: String,
+  phoneNumber: String,
+  residentialAddress: String,
+  emergencyContact: {
+    name: String,
+    phone: String,
+    relationship: String,
+  },
+});
+
+const encounterSchema = new mongoose.Schema({
+  patientID: String,
+  dateAndTime: Date,
+  encounterType: String,
+});
+
+const vitalSignsSchema = new mongoose.Schema({
+  patientID: String,
+  bloodPressure: String,
+  temperature: String,
+  pulse: String,
+  spo2: String,
+});
+
+// Create MongoDB Models
+const Patient = mongoose.model('Patient', patientSchema);
+const Encounter = mongoose.model('Encounter', encounterSchema);
+const VitalSigns = mongoose.model('VitalSigns', vitalSignsSchema);
+
+app.use(bodyParser.json());
+
 app.post('/registerPatient', async (req, res) => {
   try {
     const newPatient = new Patient(req.body);
