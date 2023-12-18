@@ -1,6 +1,14 @@
 # 10862078
 # Functional  Endpoints
 
+# Electronic Medical Record System (EMR)
+
+Welcome to the Electronic Medical Record System (EMR) – a backend application designed to manage patient records for the University of Chana Medical Center (UCMC). This system is built using Node.js, Express, and MongoDB.
+
+## Overview
+
+The EMR system facilitates the recording and management of patient information, encounters, and vital signs. It provides a set of RESTful APIs for various functionalities, allowing front-end systems to interact with the backend.
+
 ## Register Patients:
 This includes the endpoint /registerPatient :
 
