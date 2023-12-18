@@ -42,6 +42,19 @@ app.post('/submitVitals', async (req, res) => {
     await newVitalSigns.save();
     res.status(201).json({ message: 'Vitals submitted successfully' });
   } catch (error) {
+
+View List of Patients:
+This includes the endpoint /viewPatients.
+app.get('/viewPatients', async (req, res) => {
+  try {
+  
+    const patients = await Patient.find();
+    res.status(200).json(patients);
+  } catch (error) {
+  
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
   
     res.status(500).json({ error: 'Internal Server Error' });
   }
