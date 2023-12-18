@@ -23,4 +23,13 @@ app.post('/startEncounter', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+app.post('/submitVitals', async (req, res) => {
+  try {
+    const newVitalSigns = new VitalSigns(req.body);
+    await newVitalSigns.save();
+    res.status(201).json({ message: 'Vitals submitted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
