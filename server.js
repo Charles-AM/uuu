@@ -1,6 +1,16 @@
  const express= require ("express")
- const app = express()
+ const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
- app.listen(3000, ()=>{
-    console.log("Node API is running on port 3000")
- })
+const app = express()
+const PORT = 3000;
+
+app.post('/registerPatient', async (req, res) => {
+  try {
+    const newPatient = new Patient(req.body);
+    await newPatient.save();
+    res.status(201).json({ message: 'Patient has been  registered successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
