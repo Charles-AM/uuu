@@ -14,3 +14,13 @@ app.post('/registerPatient', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+app.post('/startEncounter', async (req, res) => {
+  try {
+    const newEncounter = new Encounter(req.body);
+    await newEncounter.save();
+    res.status(201).json({ message: 'Encounter started successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
